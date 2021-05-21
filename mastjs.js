@@ -136,7 +136,7 @@ function createMap() {
     imageObject = new Image();
     imageObject.src = imagePath;
     // document.body.appendChild(imageObject);
-    // IMAGE IS LOADED
+    // IMAGE IS LOADED why use this shit?? to confirm that we load the image??? wtf
     imageObject.onload = function () {
 
         imageHeight = imageObject.height;
@@ -158,7 +158,11 @@ function createMap() {
     // var southWest = map.unproject([0, imageHeight], map.getMaxZoom());
     // var northEast = map.unproject([imageWidth, 0], map.getMaxZoom());
     // var bounds = new L.LatLngBounds(southWest, northEast);
+    // var bounds = [[-26.5,-25/2], [1021.5,1023/2]];
+//
 
+//ok so we specify coordinates of the image in here where we have an
+// euclidean frame with left down corner y,x position and right top corner with y,x easy fucking peasy
     var bounds = [[-26.5,-25], [1021.5,1023]];
     // var bounds = [[0,0], [1000,1000]];
     // LOAD IMAGE AS MAP
@@ -166,11 +170,27 @@ function createMap() {
     // map.fitBounds(bounds);
 
     // SET PIXEL MODE// This limits our view. We cant go after this limit. like padding
-    map.setMaxBounds(bounds);
+    // set this to another value so you can scroll the map higher or lower than it should
+    // map.setMaxBounds(bounds);
+    map.fitBounds(bounds);
 
-    var sol = L.latLng([ 145, 175.2 ]);
+    var sol = L.latLng([ 145, 175.2 ]); // position in lat lng of the center to view
     L.marker(sol).addTo(map);
-    map.setView( [70, 1000], 1);
+    // map.setView( [70, 1000], 1);
+    var zero=L.latLng([0,0]);
+    L.marker(zero).addTo(map);
+
+    var zero=L.latLng([450,50]); //lat lng = y x
+    L.marker(zero).addTo(map);
+
+    var zero=L.latLng([50,450]);
+    L.marker(zero).addTo(map);
+
+    var zero=L([50,450]);
+    L.marker(zero).addTo(map);
+
+
+
 
     // marker = L.marker(map.unproject([imageWidth, imageHeight], map.getMaxZoom())).addTo(map);
 
